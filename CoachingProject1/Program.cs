@@ -2,7 +2,8 @@ using CoachingProject1;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<TodoDb>(options => options.UseSqlServer("Server=tcp:mattsdb.database.windows.net,1433;Initial Catalog=MattsDb;Persist Security Info=False;User ID=matt;Password=W8v82TkrPce9cjJ;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"));
+var connString = builder.Configuration.GetConnectionString("MattsDatabase");
+builder.Services.AddDbContext<TodoDb>(options => options.UseSqlServer(connString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 var app = builder.Build();
 
