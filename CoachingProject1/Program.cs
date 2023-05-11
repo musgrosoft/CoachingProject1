@@ -7,6 +7,7 @@ builder.Services.AddDbContext<TodoDb>(options => options.UseSqlServer(connString
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 var app = builder.Build();
 
+
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
