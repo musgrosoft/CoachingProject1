@@ -8,12 +8,12 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 var app = builder.Build();
 
 
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
-    var context = services.GetRequiredService<TodoDb>();
-    context.Database.EnsureCreated();
-}
+//using (var scope = app.Services.CreateScope())
+//{
+//    var services = scope.ServiceProvider;
+//    var context = services.GetRequiredService<TodoDb>();
+//    context.Database.EnsureCreated();
+//}
 
 
 var todoItems = app.MapGroup("/todoitemz");
