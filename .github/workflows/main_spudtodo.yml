@@ -40,7 +40,7 @@ jobs:
       with:
         push: true
         tags: musgrosoftregistry.azurecr.io/matty:${{ github.sha }}
-        file: aspnet-core-dotnet-core/Dockerfile
+        file: ./Dockerfile
 
   deploy:
     runs-on: ubuntu-latest
