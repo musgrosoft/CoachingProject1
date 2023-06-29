@@ -8,12 +8,12 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 var app = builder.Build();
 
 
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
-    var context = services.GetRequiredService<TodoDb>();
-    context.Database.EnsureCreated();
-}
+//using (var scope = app.Services.CreateScope())
+//{
+//    var services = scope.ServiceProvider;
+//    var context = services.GetRequiredService<TodoDb>();
+//    context.Database.EnsureCreated();
+//}
 
 
 var todoItems = app.MapGroup("/todoitems");
@@ -29,7 +29,7 @@ app.Run();
 
 static async Task<IResult> GetAllTodos(TodoDb db)
 {
-    return TypedResults.Ok(await db.Todos.ToArrayAsync());
+    return TypedResults.Ok("This is inside a container");
 }
 
 static async Task<IResult> GetCompleteTodos(TodoDb db)
