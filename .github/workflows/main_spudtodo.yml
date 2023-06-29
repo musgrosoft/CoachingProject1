@@ -13,7 +13,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  docker_build_push_acr:
+  build:
     name: 'Docker Build and Push to ACR'
     runs-on: ubuntu-latest
     environment: production
