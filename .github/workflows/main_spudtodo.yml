@@ -3,6 +3,9 @@
 
 name: Build and deploy ASP.Net Core app to Azure Web App - spudtodo
 
+env:
+  AZURE_WEBAPP_NAME: spudtodo   # set this to your application's name
+
 on:
   push:
     branches:
