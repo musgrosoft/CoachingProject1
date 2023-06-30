@@ -1,7 +1,10 @@
 using CoachingProject1;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.IdentityModel.Protocols;
 
 var builder = WebApplication.CreateBuilder(args);
+
 var connString = builder.Configuration.GetConnectionString("MattsDatabase");
 builder.Services.AddDbContext<TodoDb>(options => options.UseSqlServer(connString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
@@ -27,9 +30,11 @@ todoItems.MapDelete("/{id}", DeleteTodo);
 
 app.Run();
 
-static async Task<IResult> GetAllTodos(TodoDb db)
+
+
+static async Task<IResult> GetAllTodos(TodoDb db, IConfiguration config)
 {
-    return TypedResults.Ok("This is inside a container Matt");
+    return TypedResults.Ok("This is inside a container Matt" + config["TestValue"]);
 }
 
 static async Task<IResult> GetCompleteTodos(TodoDb db)
