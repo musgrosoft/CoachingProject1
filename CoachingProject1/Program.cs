@@ -11,12 +11,12 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 var app = builder.Build();
 
 
-//using (var scope = app.Services.CreateScope())
-//{
-//    var services = scope.ServiceProvider;
-//    var context = services.GetRequiredService<TodoDb>();
-//    context.Database.EnsureCreated();
-//}
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<TodoDb>();
+    context.Database.EnsureCreated();
+}
 
 
 var todoItems = app.MapGroup("/todoitemz");
@@ -34,11 +34,7 @@ app.Run();
 
 static async Task<IResult> GetAllTodos(TodoDb db, IConfiguration config)
 {
-    return TypedResults.Ok("This is inside a container Matt" 
-                           + config["TestValue"] 
-                           + config["SecretValue"] 
-                           + config["CONN_STRING"]
-                           + config["AzureValue"]);
+    return TypedResults.Ok("This is inside a container Matt");
 }
 
 static async Task<IResult> GetCompleteTodos(TodoDb db)
