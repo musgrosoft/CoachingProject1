@@ -44,6 +44,9 @@ jobs:
     - name: Deploy to Azure Web App
       id: deploy-to-webapp
       uses: azure/webapps-deploy@v2
+      env: 
+        CONN_STRING: ${{ secrets.CONN_STRING }}
+        SecretValue: 'I ama a secret value'
       with:
         app-name: 'spudtodo'
         slot-name: 'production'

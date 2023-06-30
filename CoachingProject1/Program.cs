@@ -34,7 +34,7 @@ app.Run();
 
 static async Task<IResult> GetAllTodos(TodoDb db, IConfiguration config)
 {
-    return TypedResults.Ok("This is inside a container Matt" + config["TestValue"] + config["SecretValue"]);
+    return TypedResults.Ok("This is inside a container Matt" + config["TestValue"] + config["SecretValue"] + config["CONN_STRING"] );
 }
 
 static async Task<IResult> GetCompleteTodos(TodoDb db)
