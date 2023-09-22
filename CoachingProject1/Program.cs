@@ -6,7 +6,12 @@ using Microsoft.IdentityModel.Protocols;
 var builder = WebApplication.CreateBuilder(args);
 
 var connString = builder.Configuration.GetConnectionString("MattsDatabase");
-builder.Services.AddDbContext<TodoDb>(options => options.UseSqlServer(connString));
+builder.Services.AddDbContext<TodoDb>(
+    
+    //options => options.UseSqlServer(connString)
+    options => options.UseInMemoryDatabase("flibble")
+    
+    );
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 var app = builder.Build();
 
@@ -34,7 +39,14 @@ app.Run();
 
 static async Task<IResult> GetAllTodos(TodoDb db, IConfiguration config)
 {
-    return TypedResults.Ok(await db.Todos.ToListAsync());
+    //return TypedResults.Ok(await db.Todos.ToListAsync());
+    return TypedResults.Ok(new List<Todo>
+    {
+        new Todo
+        {
+            Name = "Hello world"
+        }
+    });
 }
 
 static async Task<IResult> GetCompleteTodos(TodoDb db)
